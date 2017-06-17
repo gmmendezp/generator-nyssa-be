@@ -1,0 +1,9 @@
+image: node:latest
+
+before_script:
+  - npm install
+
+test:
+    script:
+      - npm run lint
+      - npm test -- --ci

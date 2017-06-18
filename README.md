@@ -35,3 +35,27 @@ yo nyssa-be:connection
 ```
 
 NOTE: This will create a setup file for testing, it will work only for mongodb. If another database is to be used there needs to be changes so a mock DB is initialized.
+
+### Hook
+
+To generate a hook for the project:
+
+```bash
+yo nyssa-be:hook
+```
+
+### Middleware
+
+To generate middleware for the project:
+
+```bash
+yo nyssa-be:middleware
+```
+
+### Service
+
+To generate a service for the project:
+
+```bash
+yo nyssa-be:service
+```

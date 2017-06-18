@@ -9,7 +9,7 @@ describe('application tests', () => {
   })
 
   afterAll(function (done) {
-    this.server.close(done)
+    this.server.close(() => done)
   })
 
   describe('404', function () {

@@ -20,17 +20,10 @@ module.exports = class extends Generator {
     this.fs.extendJSON('package.json', {
       scripts: {
         start: 'nodemon src/',
-        test: 'jest --env=node',
+        test: 'jest',
         lint: 'standard --verbose | snazzy',
         format:
           'prettier --single-quote --no-semi --write "**/*.js" && standard --fix'
-      },
-      'lint-staged': {
-        '*.js': [
-          'prettier --single-quote --no-semi --write',
-          'standard --fix',
-          'git add'
-        ]
       }
     })
     this.fs.delete(this.destinationPath('.eslintrc.json'))

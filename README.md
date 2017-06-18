@@ -18,9 +18,10 @@ To generate a new project:
 yo nyssa-be
 ```
 
-##### Options:
+### Project
 
-- `name`
-  Name for the generated project. The default value is `FeathersTest`.
-- `path`
-  Relative path were the project will be generated, the generator will create the folders as needed. The default value is `.` (Current folder).
+To generate authentication for the project:
+
+```bash
+yo nyssa-be:auth
+```

@@ -1,6 +1,6 @@
 /* eslint-env jest */
 const rp = require('request-promise')
-const app = require('./app')
+const app = require('../src/app')
 
 describe('application tests', () => {
   beforeAll(function (done) {
@@ -13,7 +13,7 @@ describe('application tests', () => {
   })
 
   describe('404', function () {
-    test('shows a 404 HTML page', () => {
+    it('shows a 404 HTML page', () => {
       return rp({
         url: 'http://localhost:3030/path/to/nowhere',
         headers: {
@@ -25,7 +25,7 @@ describe('application tests', () => {
       })
     })
 
-    test('shows a 404 JSON error without stack trace', () => {
+    it('shows a 404 JSON error without stack trace', () => {
       return rp({
         url: 'http://localhost:3030/path/to/nowhere',
         json: true

@@ -20,6 +20,8 @@
   },
   "homepage": "https://gitlab.com/gmmendezp/generator-nyssa-be#README",
   "dependencies": {
+    "generator-feathers": "^1.1.1",
+    "gulp-transform": "^2.0.0",
     "yeoman-generator": "^1.1.1"
   },
   "devDependencies": {

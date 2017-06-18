@@ -9,10 +9,6 @@ module.exports = class extends Generator {
     )
   }
 
-  writing () {
-    this.fs.copy(this.templatePath(), this.destinationPath('.'))
-  }
-
   conflicts () {
     this.registerTransformStream(
       transform(
@@ -47,10 +43,6 @@ module.exports = class extends Generator {
   }
 
   end () {
-    return this.spawnCommand('npm', [
-      'install',
-      '-D',
-      'mongo-in-memory'
-    ]).on('exit', () => this.spawnCommand('npm', ['run', 'format']))
+    this.spawnCommand('npm', ['run', 'format'])
   }
 }

@@ -5,11 +5,11 @@ const app = require('../src/app')
 describe('application tests', () => {
   beforeAll(function (done) {
     this.server = app.listen(3030)
-    this.server.once('listening', () => done())
+    this.server.once('listening', done)
   })
 
   afterAll(function (done) {
-    this.server.close(() => done)
+    this.server.close(done)
   })
 
   describe('404', function () {

@@ -18,10 +18,20 @@ To generate a new project:
 yo nyssa-be
 ```
 
-### Project
+### Authentication
 
 To generate authentication for the project:
 
 ```bash
 yo nyssa-be:auth
 ```
+
+### Connection
+
+To generate a connection for the project:
+
+```bash
+yo nyssa-be:connection
+```
+
+NOTE: This will create a setup file for testing, it will work only for mongodb. If another database is to be used there needs to be changes so a mock DB is initialized.

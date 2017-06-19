@@ -23,7 +23,8 @@ module.exports = class extends Generator {
         test: 'jest',
         lint: 'standard --verbose | snazzy',
         format:
-          'prettier --single-quote --no-semi --write "**/*.js" && standard --fix'
+          'prettier --single-quote --no-semi --write "**/*.js" && standard --fix',
+        precommit: 'lint-staged'
       }
     })
     this.fs.delete(this.destinationPath('.eslintrc.json'))
@@ -60,23 +61,27 @@ module.exports = class extends Generator {
   }
 
   end () {
-    return this.spawnCommand('npm', [
-      'uninstall',
-      'mocha',
-      'eslint',
-      'serve-favicon'
-    ]).on('exit', () =>
+    return new Promise(resolve =>
       this.spawnCommand('npm', [
-        'i',
-        '-D',
-        'husky',
-        'jest',
-        'lint-staged',
-        'nodemon',
-        'prettier',
-        'snazzy',
-        'standard'
-      ]).on('exit', () => this.spawnCommand('npm', ['run', 'format']))
+        'uninstall',
+        'mocha',
+        'eslint',
+        'serve-favicon'
+      ]).on('exit', () =>
+        this.spawnCommand('npm', [
+          'i',
+          '-D',
+          'husky',
+          'jest',
+          'lint-staged',
+          'nodemon',
+          'prettier',
+          'snazzy',
+          'standard'
+        ]).on('exit', () =>
+          this.spawnCommand('npm', ['run', 'format']).on('exit', resolve)
+        )
+      )
     )
   }
 }

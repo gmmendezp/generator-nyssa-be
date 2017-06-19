@@ -4,9 +4,7 @@ const transform = require('gulp-transform')
 
 module.exports = class extends Generator {
   initializing () {
-    this.composeWith(
-      require.resolve('generator-feathers/generators/hook')
-    )
+    this.composeWith(require.resolve('generator-feathers/generators/hook'))
   }
 
   conflicts () {
@@ -21,7 +19,9 @@ module.exports = class extends Generator {
               .filter(line => !/require\('assert'\)/.test(line))
               .map(line => {
                 if (/assert.equal/.test(line)) {
-                  let lineMatch = line.match(/assert.equal\((.*), *(.*), *['"].*['"]\)/)
+                  let lineMatch = line.match(
+                    /assert.equal\((.*), *(.*), *['"].*['"]\)/
+                  )
                   line = `expect(${lineMatch[1]}).toBe(${lineMatch[2]})`
                 }
                 return line
@@ -38,6 +38,8 @@ module.exports = class extends Generator {
   }
 
   end () {
-    this.spawnCommand('npm', ['run', 'format'])
+    return new Promise(resolve =>
+      this.spawnCommand('npm', ['run', 'format']).on('exit', resolve)
+    )
   }
 }

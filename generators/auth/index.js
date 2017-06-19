@@ -43,6 +43,8 @@ module.exports = class extends Generator {
   }
 
   end () {
-    this.spawnCommand('npm', ['run', 'format'])
+    return new Promise(resolve =>
+      this.spawnCommand('npm', ['run', 'format']).on('exit', resolve)
+    )
   }
 }

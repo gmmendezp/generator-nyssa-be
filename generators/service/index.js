@@ -4,9 +4,7 @@ const transform = require('gulp-transform')
 
 module.exports = class extends Generator {
   initializing () {
-    this.composeWith(
-      require.resolve('generator-feathers/generators/service')
-    )
+    this.composeWith(require.resolve('generator-feathers/generators/service'))
   }
 
   conflicts () {
@@ -43,6 +41,8 @@ module.exports = class extends Generator {
   }
 
   end () {
-    this.spawnCommand('npm', ['run', 'format'])
+    return new Promise(resolve =>
+      this.spawnCommand('npm', ['run', 'format']).on('exit', resolve)
+    )
   }
 }

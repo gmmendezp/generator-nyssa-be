@@ -13,10 +13,14 @@ module.exports = class extends Generator {
   }
 
   end () {
-    return this.spawnCommand('npm', [
-      'install',
-      '-D',
-      'mongo-in-memory'
-    ]).on('exit', () => this.spawnCommand('npm', ['run', 'format']))
+    return new Promise(resolve =>
+      this.spawnCommand('npm', [
+        'install',
+        '-D',
+        'mongo-in-memory'
+      ]).on('exit', () => () =>
+        this.spawnCommand('npm', ['run', 'format']).on('exit', resolve)
+      )
+    )
   }
 }

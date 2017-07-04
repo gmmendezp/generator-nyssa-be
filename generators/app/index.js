@@ -50,6 +50,8 @@ module.exports = class extends Generator {
             contents = contents.replace(/"host": "(.+)",/, '"host": "HOST",')
           } else if (file.relative.includes('default.json')) {
             contents = contents.replace(/ {2}"public": "..\/public\/",\n/, '')
+          } else if (/.*(git|npm)ignore/.test(file.relative)) {
+            contents += '\npackage-lock.json\n'
           }
           return contents
         },
